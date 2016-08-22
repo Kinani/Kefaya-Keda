@@ -1,6 +1,20 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0"
+    "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "Microsoft.ProjectOxford.Common": "1.0.308",
+    "Microsoft.ProjectOxford.Emotion": "1.0.310",
+    "Microsoft.ProjectOxford.Face": "1.1.0",
+    "Microsoft.ProjectOxford.Vision": "1.0.354",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "1.1.0",
+    "MvvmLight": "5.3.0",
+    "runtime.native.System.IO.Compression": "4.1.0",
+    "runtime.win7.System.Private.Uri": {
+      "version": "4.0.1",
+      "exclude": "runtime"
+    },
+    "System.Private.Uri": "4.0.0"
   },
   "frameworks": {
     "uap10.0": {}
