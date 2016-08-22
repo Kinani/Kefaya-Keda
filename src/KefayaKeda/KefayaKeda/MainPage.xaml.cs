@@ -1,10 +1,12 @@
-﻿using System;
+﻿using KefayaKeda.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,9 +24,22 @@ namespace KefayaKeda
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private CameraMan _cameraMan;
+        
         public MainPage()
         {
             this.InitializeComponent();
+        }
+        protected async override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            await _cameraMan.CleanupCameraAsync();
+        }
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            _cameraMan = new CameraMan(PreviewControl);
+            await _cameraMan.StartPreviewAsync();
         }
     }
 }
