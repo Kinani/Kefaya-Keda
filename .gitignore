@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/src/KefayaKeda/Constants.cs
+src/KefayaKeda/KefayaKeda/Constants.cs
