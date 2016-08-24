@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KefayaKeda.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +25,10 @@ namespace KefayaKeda
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            using (var db = new KKProfileContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
