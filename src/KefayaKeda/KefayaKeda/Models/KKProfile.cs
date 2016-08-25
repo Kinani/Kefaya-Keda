@@ -16,6 +16,7 @@ namespace KefayaKeda.Models
         public TimeSpan TimeAllowance { get; set; }
         public TimeSpan TimeEllapsed { get; set; }
         public DateTime LastEdit { get; set; }
+        public DateTime SessionStartTime { get; set; }
         public DateTime DateCreated { get; private set; }
 
         KKProfile()

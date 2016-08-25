@@ -16,6 +16,7 @@ namespace KefayaKeda.Migrations
                         .Annotation("Autoincrement", true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     LastEdit = table.Column<DateTime>(nullable: false),
+                    SessionStartTime = table.Column<DateTime>(nullable: false),
                     TimeAllowance = table.Column<TimeSpan>(nullable: false),
                     TimeEllapsed = table.Column<TimeSpan>(nullable: false),
                     WhatAction = table.Column<string>(nullable: true),

@@ -24,6 +24,8 @@ namespace KefayaKeda.Migrations
 
                     b.Property<DateTime>("LastEdit");
 
+                    b.Property<DateTime>("SessionStartTime");
+
                     b.Property<TimeSpan>("TimeAllowance");
 
                     b.Property<TimeSpan>("TimeEllapsed");
