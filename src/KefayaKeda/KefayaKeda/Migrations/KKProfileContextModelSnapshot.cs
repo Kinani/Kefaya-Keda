@@ -20,6 +20,8 @@ namespace KefayaKeda.Migrations
                     b.Property<int>("KKProfileId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("DateCreated");
+
                     b.Property<DateTime>("LastEdit");
 
                     b.Property<TimeSpan>("TimeAllowance");

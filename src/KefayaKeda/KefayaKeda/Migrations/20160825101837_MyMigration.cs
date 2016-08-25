@@ -14,6 +14,7 @@ namespace KefayaKeda.Migrations
                 {
                     KKProfileId = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
                     LastEdit = table.Column<DateTime>(nullable: false),
                     TimeAllowance = table.Column<TimeSpan>(nullable: false),
                     TimeEllapsed = table.Column<TimeSpan>(nullable: false),

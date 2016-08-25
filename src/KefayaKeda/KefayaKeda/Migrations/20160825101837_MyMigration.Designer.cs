@@ -8,7 +8,7 @@ using KefayaKeda.Models;
 namespace KefayaKeda.Migrations
 {
     [DbContext(typeof(KKProfileContext))]
-    [Migration("20160824192758_MyMigration")]
+    [Migration("20160825101837_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,8 @@ namespace KefayaKeda.Migrations
                 {
                     b.Property<int>("KKProfileId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
 
                     b.Property<DateTime>("LastEdit");
 
