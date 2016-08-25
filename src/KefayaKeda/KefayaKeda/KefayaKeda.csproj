@@ -101,6 +101,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20160825102718_MyMigration.cs" />
+    <Compile Include="Migrations\20160825102718_MyMigration.designer.cs">
+      <DependentUpon>20160825102718_MyMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\KKProfileContextModelSnapshot.cs" />
     <Compile Include="Models\KKProfile.cs" />
     <Compile Include="Models\KKProfileContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

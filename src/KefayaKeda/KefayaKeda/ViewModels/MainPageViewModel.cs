@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using KefayaKeda.Common;
 using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
 using System;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml.Controls;
 
 namespace KefayaKeda.ViewModels
 {
@@ -18,8 +20,11 @@ namespace KefayaKeda.ViewModels
         private CancellationTokenSource wtoken;
         private Task task;
 
-        #region Properties
+        public CameraMan _cameraMan;
+        public CaptureElement captureElement;
 
+        #region Properties
+        private StorageFile capturedImage { get; set; }
         #endregion
 
         #region Commands
@@ -28,9 +33,11 @@ namespace KefayaKeda.ViewModels
         {
             get
             {
-                captureEleLoaded = new RelayCommand(() =>
+                captureEleLoaded = new RelayCommand(async () =>
                 {
-
+                    _cameraMan = new CameraMan(captureElement);
+                    await _cameraMan.StartPreviewAsync();
+                    
                 });
                 return captureEleLoaded;
             }
@@ -72,7 +79,7 @@ namespace KefayaKeda.ViewModels
                     await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher
                        .RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                        {
-                           //TODO
+                           
                        });
 
                     await Task.Delay(8000, wtoken.Token);

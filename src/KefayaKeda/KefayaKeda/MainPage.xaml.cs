@@ -24,9 +24,7 @@ namespace KefayaKeda
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
-    {
-        private CameraMan _cameraMan;
-
+    {  
         public MainPageViewModel Vm
         {
             get
@@ -41,13 +39,12 @@ namespace KefayaKeda
         protected async override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            await _cameraMan.CleanupCameraAsync();
+            await Vm._cameraMan.CleanupCameraAsync();
         }
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            _cameraMan = new CameraMan(PreviewControl);
-            await _cameraMan.StartPreviewAsync();
+            Vm.captureElement = PreviewControl;
         }
     }
 }
