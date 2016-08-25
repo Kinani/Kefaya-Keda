@@ -5,6 +5,7 @@ using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,7 @@ namespace KefayaKeda.ViewModels
                 {
                     _cameraMan = new CameraMan(captureElement);
                     await _cameraMan.StartPreviewAsync();
-                    
+                    StartWork();
                 });
                 return captureEleLoaded;
             }
@@ -77,12 +78,14 @@ namespace KefayaKeda.ViewModels
                 while (true)
                 {
                     await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher
-                       .RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                       .RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
                        {
-                           
+                           capturedImage = await _cameraMan.CaptureImage();
+                           AnalysisResult result = await DoVision(capturedImage);
+                           Debug.WriteLine(result.Description.Captions[0].Text);
                        });
 
-                    await Task.Delay(8000, wtoken.Token);
+                    await Task.Delay(300000, wtoken.Token);
                 }
             }, wtoken.Token);
         }

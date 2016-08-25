@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Graphics.Display;
 using Windows.Media.Capture;
+using Windows.Media.MediaProperties;
+using Windows.Storage;
 using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -17,11 +19,11 @@ namespace KefayaKeda.Common
     {
         MediaCapture _mediaCapture = null;
         CaptureElement _captureElement = null;
-        
-        public CameraMan( CaptureElement captureElement)
-        {   
+
+        public CameraMan(CaptureElement captureElement)
+        {
             _captureElement = captureElement;
-            
+
             Application.Current.Suspending += Application_Suspending;
         }
 
@@ -37,7 +39,7 @@ namespace KefayaKeda.Common
                 await _mediaCapture.StartPreviewAsync();
                 Constants.IsPreviewing = true;
 
-               
+
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             }
             catch (UnauthorizedAccessException)
@@ -49,6 +51,15 @@ namespace KefayaKeda.Common
             {
                 System.Diagnostics.Debug.WriteLine("MediaCapture initialization failed. {0}", ex.Message);
             }
+        }
+
+        public async Task<StorageFile> CaptureImage()
+        {
+            StorageFile tmp = await
+                ApplicationData.Current.LocalFolder.CreateFileAsync("elostazwehowaa3ed.jpeg",
+                CreationCollisionOption.ReplaceExisting);
+            await _mediaCapture.CapturePhotoToStorageFileAsync(ImageEncodingProperties.CreateJpeg(), tmp);
+            return tmp;
         }
 
         public async Task CleanupCameraAsync()
@@ -63,9 +74,9 @@ namespace KefayaKeda.Common
                 await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     _captureElement.Source = null;
-                    
+
                 });
-                
+
                 _mediaCapture.Dispose();
                 _mediaCapture = null;
             }
