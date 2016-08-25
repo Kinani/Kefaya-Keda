@@ -1,4 +1,5 @@
 ﻿using KefayaKeda.Common;
+using KefayaKeda.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,7 +26,14 @@ namespace KefayaKeda
     public sealed partial class MainPage : Page
     {
         private CameraMan _cameraMan;
-        
+
+        public MainPageViewModel Vm
+        {
+            get
+            {
+                return (MainPageViewModel)DataContext;
+            }
+        }
         public MainPage()
         {
             this.InitializeComponent();
