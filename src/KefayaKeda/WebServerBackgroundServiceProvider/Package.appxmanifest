@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="b99717fb-cdec-40c6-bc59-791d77670d5c" Publisher="CN=kinani" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="b99717fb-cdec-40c6-bc59-791d77670d5c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="3794d190-02a2-4c83-b044-74c5304739e9" Publisher="CN=kinani" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="3794d190-02a2-4c83-b044-74c5304739e9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>KefayaKeda</DisplayName>
+    <DisplayName>WebServerBackgroundServiceProvider</DisplayName>
     <PublisherDisplayName>kinani</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -14,22 +14,22 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="KefayaKeda.App">
-      <uap:VisualElements DisplayName="KefayaKeda" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="KefayaKeda" BackgroundColor="transparent">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="WebServerBackgroundServiceProvider.App">
+      <uap:VisualElements DisplayName="WebServerBackgroundServiceProvider" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="WebServerBackgroundServiceProvider" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.appService" EntryPoint="MyAppService.WebServerBackgroundTask">
+          <uap:AppService Name="MySuperServer" />
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
     <Capability Name="internetClientServer" />
     <Capability Name="privateNetworkClientServer" />
-    <uap:Capability Name="videosLibrary" />
-    <uap:Capability Name="removableStorage" />
-    <uap:Capability Name="picturesLibrary" />
-    <DeviceCapability Name="webcam" />
-    <DeviceCapability Name="microphone" />
   </Capabilities>
 </Package>
