@@ -20,6 +20,8 @@ namespace KefayaKeda.ViewModels
     {
         private CancellationTokenSource wtoken;
         private Task task;
+        private HttpServer server;
+
 
         public CameraMan _cameraMan;
         public CaptureElement captureElement;
@@ -49,7 +51,25 @@ namespace KefayaKeda.ViewModels
         }
         #endregion
 
-        public MainPageViewModel() { }
+        public MainPageViewModel()
+        {
+            // Posible bug? should we start it from a ThreadPool
+            server = new HttpServer(8000);
+            server.StartServer();
+            server.OnStateChanged += Server_OnStateChanged;
+        }
+
+        private void Server_OnStateChanged(object source, string e)
+        {
+            if (e == "On")
+            {
+                // TODO
+            }
+            else
+            {
+
+            }
+        }
 
         private async Task<AnalysisResult> DoVision(StorageFile file)
         {
